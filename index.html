@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Password Gate -->
+    <div id="password-gate">
+        <div class="gate-container">
+            <h1><i class="fas fa-lock"></i> Your Special Gift</h1>
+            <p>Enter the password I gave you to unlock your birthday surprise:</p>
+            <input type="password" id="password-input" placeholder="Our secret code">
+            <button id="unlock-button"><i class="fas fa-gift"></i> Unlock</button>
+            <p id="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until unlocked) -->
+    <div id="website-content">
+        <!-- Messages Section -->
+        <section class="fullscreen-section" id="messages">
+            <div class="section-container">
+                <h2 class="section-title">To My Beautiful Girlfriend</h2>
+                <div class="message-bubbles">
+                    <div class="message from-me">
+                        Happy Birthday to the most amazing woman in my life!
+                    </div>
+                    <div class="message from-me">
+                        Every day with you feels like a dream I never want to wake up from.
+                    </div>
+                    <div class="message from-me">
+                        I created this website to show you how much you mean to me.
+                    </div>
+                    <div class="heart-animation"></div>
+                </div>
+                <div class="scroll-hint">
+                    <i class="fas fa-angle-double-down"></i> Scroll down to continue
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="fullscreen-section" id="video">
+            <div class="section-container">
+                <h2 class="section-title">A Special Performance For You</h2>
+                <div class="video-wrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                            gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="video-caption">I played this song just for you, my love</p>
+            </div>
+        </section>
+
+        <!-- Childhood Phase -->
+        <section class="fullscreen-section phase-section" id="childhood">
+            <div class="section-container">
+                <h2 class="phase-title">Your Childhood</h2>
+                <div class="photo-collage">
+                    <div class="photo-stack">
+                        <img src="images/image-1.jpg" class="stacked-photo" style="transform: rotate(-5deg);">
+                        <img src="images/image-2.jpg" class="stacked-photo" style="transform: rotate(2deg); left: 20px; top: 20px;">
+                        <img src="images/image-3.jpg" class="stacked-photo" style="transform: rotate(5deg); left: 40px; top: 40px;">
+                    </div>
+                </div>
+                <p class="phase-message">
+                    Even as a child, you had that special spark that would one day light up my life.
+                </p>
+            </div>
+        </section>
+
+        <!-- Teen Years Phase -->
+        <section class="fullscreen-section phase-section" id="teen-years">
+            <div class="section-container">
+                <h2 class="phase-title">Teen Years</h2>
+                <div class="photo-collage horizontal">
+                    <img src="images/image-4.jpg" class="collage-photo main-photo">
+                    <img src="images/image-5.jpg" class="collage-photo side-photo">
+                    <img src="images/image-6.jpg" class="collage-photo side-photo">
+                </div>
+                <p class="phase-message">
+                    Your teenage years shaped the incredible woman you would become.
+                </p>
+            </div>
+        </section>
+
+        <!-- Hippie Phase -->
+        <section class="fullscreen-section phase-section" id="hippie-phase">
+            <div class="section-container">
+                <h2 class="phase-title">Your Free Spirit</h2>
+                <div class="polaroid-grid">
+                    <div class="polaroid">
+                        <img src="images/image-7.jpg">
+                        <p>Summer of love</p>
+                    </div>
+                    <div class="polaroid">
+                        <img src="images/image-8.jpg">
+                        <p>Festival days</p>
+                    </div>
+                    <div class="polaroid">
+                        <img src="images/image-9.jpg">
+                        <p>Carefree spirit</p>
+                    </div>
+                </div>
+                <p class="phase-message">
+                    This was when you discovered your free spirit and love for adventure.
+                </p>
+            </div>
+        </section>
+
+        <!-- Coming to Turkey -->
+        <section class="fullscreen-section phase-section" id="turkey">
+            <div class="section-container">
+                <h2 class="phase-title">Coming to Turkey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <img src="images/image-10.jpg">
+                        <p>Your first days here</p>
+                    </div>
+                    <div class="timeline-item">
+                        <img src="images/image-11.jpg">
+                        <p>Exploring together</p>
+                    </div>
+                    <div class="timeline-item">
+                        <img src="images/image-12.jpg">
+                        <p>Making memories</p>
+                    </div>
+                </div>
+                <p class="phase-message">
+                    Your journey to Turkey brought you into my life, and I'll be forever grateful.
+                </p>
+            </div>
+        </section>
+
+        <!-- Us Together -->
+        <section class="fullscreen-section phase-section" id="together">
+            <div class="section-container">
+                <h2 class="phase-title">Our Story</h2>
+                <div class="love-grid">
+                    <div class="love-item big-item" style="background-image: url('images/image-13.jpg');">
+                        <div class="love-caption">Our first date</div>
+                    </div>
+                    <div class="love-item" style="background-image: url('images/image-14.jpg');">
+                        <div class="love-caption">Summer vacation</div>
+                    </div>
+                    <div class="love-item" style="background-image: url('images/image-15.jpg');">
+                        <div class="love-caption">Your smile</div>
+                    </div>
+                    <div class="love-item" style="background-image: url('images/image-16.jpg');">
+                        <div class="love-caption">Weekend getaway</div>
+                    </div>
+                    <div class="love-item big-item" style="background-image: url('images/image-17.jpg');">
+                        <div class="love-caption">My favorite memory</div>
+                    </div>
+                </div>
+                <p class="phase-message">
+                    Every moment with you has been a treasure I'll cherish forever.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final Prose Section -->
+        <section class="fullscreen-section" id="prose">
+            <div class="section-container prose-container">
+                <h2 class="section-title">For You, My Love</h2>
+                <div class="poem">
+                    <p>If I could give you one thing in life,</p>
+                    <p>I would give you the ability to see yourself through my eyes,</p>
+                    <p>Only then would you realize how special you are to me.</p>
+                    <br>
+                    <p>Your laugh is my favorite sound,</p>
+                    <p>Your smile is my favorite sight,</p>
+                    <p>Your heart is my favorite place.</p>
+                    <br>
+                    <p>Happy birthday to the woman who makes my world complete.</p>
+                    <p class="signature">Forever yours,<br>[Your Name]</p>
+                </div>
+                <div class="floating-hearts"></div>
+            </div>
+        </section>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="player-controls">
+                <button id="prev-song"><i class="fas fa-step-backward"></i></button>
+                <button id="play-pause"><i class="fas fa-play"></i></button>
+                <button id="next-song"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="song-info">
+                <span id="now-playing">Our Song - Playing Now</span>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="playlist-toggle">
+                <i class="fas fa-music"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
