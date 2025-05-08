@@ -130,9 +130,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
-    // ===== MUSIC PLAYER =====
+
     function initMusicPlayer() {
+        // DOM Elements
+        const playPauseBtn = document.getElementById('play-pause');
+        const prevSongBtn = document.getElementById('prev-song');
+        const nextSongBtn = document.getElementById('next-song');
+        const nowPlayingEl = document.getElementById('now-playing');
+        const progressBar = document.querySelector('.progress-bar .progress');
+        
+    
         // Your playlist - add your actual song files
         const playlist = [
             {
@@ -218,73 +225,132 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add more songs as needed
         ];
         
-        // Player elements
-        const playPauseBtn = document.getElementById('play-pause');
-        const prevSongBtn = document.getElementById('prev-song');
-        const nextSongBtn = document.getElementById('next-song');
-        const nowPlayingEl = document.getElementById('now-playing');
-        const progressBar = document.querySelector('.progress-bar .progress');
-        
-        // Audio player
-        const audio = new Audio();
-        let currentSongIndex = 0;
-        let isPlaying = false;
-        
-        // Load song
-        function loadSong(songIndex) {
-            const song = playlist[songIndex];
-            audio.src = song.src;
-            nowPlayingEl.textContent = `${song.title} - ${song.artist}`;
+        // Audio context to handle mobile restrictions
+    let audioContext;
+    let audioElement;
+    let isPlaying = false;
+    let currentSongIndex = 0;
+    
+    // Initialize audio
+    function initAudio() {
+        // Create audio element if it doesn't exist
+        if (!audioElement) {
+            audioElement = new Audio();
             
-            if (isPlaying) {
-                audio.play();
-            }
-        }
-        
-        // Play/pause toggle
-        function togglePlay() {
-            if (isPlaying) {
-                audio.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            } else {
-                audio.play();
+            // Event listeners for audio element
+            audioElement.addEventListener('timeupdate', updateProgress);
+            audioElement.addEventListener('ended', nextSong);
+            audioElement.addEventListener('play', () => {
+                isPlaying = true;
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            }
-            isPlaying = !isPlaying;
+            });
+            audioElement.addEventListener('pause', () => {
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
         }
         
-        // Next song
-        function nextSong() {
-            currentSongIndex = (currentSongIndex + 1) % playlist.length;
-            loadSong(currentSongIndex);
+        // For mobile devices - resume audio context on interaction
+        document.body.addEventListener('click', resumeAudioContext, { once: true });
+    }
+    
+    // Handle mobile audio restrictions
+    function resumeAudioContext() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
-        
-        // Previous song
-        function prevSong() {
-            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-            loadSong(currentSongIndex);
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
         }
+    }
+    
+    // Load and play song
+    function loadSong(index) {
+        currentSongIndex = index;
+        const song = playlist[index];
         
-        // Update progress bar
-        function updateProgress() {
-            const progressPercent = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = `${progressPercent}%`;
+        audioElement.src = song.src;
+        nowPlayingEl.textContent = `${song.title} - ${song.artist}`;
+        
+        // Reset progress bar
+        progressBar.style.width = '0%';
+        
+        // Auto-play if already playing
+        if (isPlaying) {
+            const playPromise = audioElement.play();
             
-            // Automatically play next song when current ends
-            if (audio.currentTime >= audio.duration - 0.1) {
-                nextSong();
+            // Handle play promise for modern browsers
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Auto-play prevented:", error);
+                    // Show play button to indicate user needs to interact
+                    isPlaying = false;
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
             }
         }
-        
-        // Event listeners
-        playPauseBtn.addEventListener('click', togglePlay);
-        nextSongBtn.addEventListener('click', nextSong);
-        prevSongBtn.addEventListener('click', prevSong);
-        audio.addEventListener('timeupdate', updateProgress);
-        
-        // Initialize with first song
+    }
+    
+    // Play/pause toggle
+    function togglePlay() {
+        if (isPlaying) {
+            audioElement.pause();
+        } else {
+            const playPromise = audioElement.play();
+            
+            // Handle play promise for modern browsers
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Play prevented:", error);
+                    // Show play button to indicate user needs to interact
+                    isPlaying = false;
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+            }
+        }
+    }
+    
+    // Next song
+    function nextSong() {
+        currentSongIndex = (currentSongIndex + 1) % playlist.length;
         loadSong(currentSongIndex);
     }
+    
+    // Previous song
+    function prevSong() {
+        currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+        loadSong(currentSongIndex);
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+        if (audioElement.duration) {
+            const progressPercent = (audioElement.currentTime / audioElement.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+    }
+    
+    // Seek functionality (optional)
+    function setupSeek() {
+        const progressContainer = document.querySelector('.progress-bar');
+        
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            audioElement.currentTime = pos * audioElement.duration;
+        });
+    }
+    
+    // Initialize everything
+    initAudio();
+    loadSong(currentSongIndex);
+    setupSeek();
+    
+    // Event listeners for buttons
+    playPauseBtn.addEventListener('click', togglePlay);
+    nextSongBtn.addEventListener('click', nextSong);
+    prevSongBtn.addEventListener('click', prevSong);
+}
     
     // ===== FLOATING HEARTS =====
     function initFloatingHearts() {
