@@ -1,7 +1,7 @@
 // ===== PASSWORD PROTECTION =====
 document.addEventListener('DOMContentLoaded', function() {
     // Set your secret password here
-    const CORRECT_PASSWORD = "forever2024"; // Change this to your actual password
+    const CORRECT_PASSWORD = "Flower-Moon"; // Change this to your actual password
     
     // DOM Elements
     const passwordInput = document.getElementById('password-input');
@@ -136,15 +136,85 @@ document.addEventListener('DOMContentLoaded', function() {
         // Your playlist - add your actual song files
         const playlist = [
             {
-                title: "Your Favorite Song",
-                artist: "Special Artist",
+                title: "Ojos Asi",
+                artist: "Shakira",
                 src: "music/song1.mp3"
             },
             {
-                title: "Your Second Favorite",
-                artist: "Another Artist",
+                title: "Oye Mi Amor",
+                artist: "Mana",
                 src: "music/song2.mp3"
-            }
+            },
+            {
+                title: "Oh, Pretty Woman",
+                artist: "Roy Orbison",
+                src: "music/song3.mp3"
+            },
+            {
+                title: "Maria",
+                artist: "Blondie",
+                src: "music/song4.mp3"
+            },
+            {
+                title: "A Dios Le Pido",
+                artist: "Juanes",
+                src: "music/song5.mp3"
+            },
+            {
+                title: "Abusadora",
+                artist: "Wisin & Yandel",
+                src: "music/song6.mp3"
+            },
+            {
+                title: "Zumba",
+                artist: "Don Omar",
+                src: "music/song7.mp3"
+            },
+            {
+                title: "Freakytona",
+                artist: "Boy Wonder CF, Plan B",
+                src: "music/song8.mp3"
+            },
+            {
+                title: "EoO",
+                artist: "Bad Bunny",
+                src: "music/song9.mp3"
+            },
+            {
+                title: "Safaera",
+                artist: "Bad Bunny",
+                src: "music/song10.mp3"
+            },
+            {
+                title: "R U Mine?",
+                artist: "Arctic Monkeys",
+                src: "music/song11.mp3"
+            },
+            {
+                title: "Livin' la Vida Loca",
+                artist: "Ricky Martin",
+                src: "music/song12.mp3"
+            },
+            {
+                title: "La Bruja",
+                artist: "Tlen Huicani, Lino Chavez",
+                src: "music/song13.mp3"
+            },
+            {
+                title: "Hooka",
+                artist: "Don Omar",
+                src: "music/song14.mp3"
+            },
+            {
+                title: "Lovers Rock",
+                artist: "TV Girl",
+                src: "music/song15.mp3"
+            },
+            {
+                title: "Virtual Diva",
+                artist: "Don Omar",
+                src: "music/song16.mp3"
+            },
             // Add more songs as needed
         ];
         
